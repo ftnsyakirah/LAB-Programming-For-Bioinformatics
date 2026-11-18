@@ -6,19 +6,21 @@ def proportions(counts: list[float]) -> list[float]:
     Raises:
         ValueError: if the total is zero (a list of zeros would look like data).
     """
-    if not counts:
-        raise ValueError("Cannot normalise an empty list")
     total = sum(counts)
     if total == 0:
-        raise ValueError("Cannot normalise a list of zeros")
-    return [c / total for c in counts]
+        raise ValueError("Total count is zero")
+    return [value/total for value in counts]
 
 
 def cpm(counts: list[float], library_size: float | None = None) -> list[float]:
     """Counts per million; library_size defaults to the sum of counts."""
-    if library_size is None:
-        library_size = sum(counts)
-
-    if library_size <= 0:
+    size = (
+        sum(counts) if library_size is None else library_size
+    )
+    if size <= 0:
         raise ValueError("Library size must be positive")
-    return [c * 1_000_000 / library_size for c in counts]
+    return [value * 1_000_000 / size for value in counts]
+
+if __name__ == "__main__":
+    print(proportions([20, 140, 40]))
+    print(cpm([10,20], 100))

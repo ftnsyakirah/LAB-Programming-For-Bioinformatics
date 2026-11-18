@@ -6,17 +6,27 @@ COMPLEMENT = str.maketrans("ACGT", "TGCA")
 
 def clean_sequence(raw: str) -> str:
     """Upper-case raw text and drop spaces, digits and newlines."""
-    return "".join(c.upper() for c in raw if c.isalpha())
+    result = ""
+
+    for char in raw.upper():
+        if char.isalpha():
+            result += char
+
+    return result
 
 
 def is_valid_dna(sequence: str, allow_n: bool = False) -> bool:
     """True for a non-empty string of A, C, G, T (N if allowed)."""
-    if not sequence:
+    seq = sequence.upper()
+    if not seq:
         return False
-    sequence = sequence.upper()
+
+    allowed = set(DNA_BASES)
+
     if allow_n:
-        return all(c in DNA_BASES or c == "N" for c in sequence)
-    return all(c in DNA_BASES for c in sequence)
+        allowed.add("N")
+
+    return all(char in allowed for char in seq)
 
 
 def gc_content(sequence: str) -> float:
@@ -36,7 +46,26 @@ def reverse_complement(sequence: str) -> str:
 def find_motif(sequence: str, motif: str) -> list[int]:
     """Return every 0-based start of motif (overlaps allowed)."""
     if not motif:
-        raise ValueError("Empty motif")
-    sequence = sequence.upper()
+        raise ValueError("Motif cannot be empty")
+
+    seq = sequence.upper()
     motif = motif.upper()
-    return [i for i in range(len(sequence) - len(motif) + 1) if sequence[i:i + len(motif)] == motif]
+
+    positions = []
+    start = 0
+    while True:
+        pos = seq.find(motif, start)
+        if pos == -1:
+            break
+
+        positions.append(pos)
+        start = pos + 1
+
+    return positions
+
+if __name__ == "__main__":
+    print(clean_sequence("3e2r fAtiNnAkiraA"))
+    print(is_valid_dna("Acgt",True))
+    print(gc_content("gctaggcctaaatcg"))
+    print(reverse_complement("agctgtaacc"))
+    print(find_motif("AAAA", "aa"))

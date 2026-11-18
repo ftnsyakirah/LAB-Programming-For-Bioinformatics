@@ -1,6 +1,6 @@
 # SECB3203 Lab 5 - Functions and modules: sequence_utils.py and normalize.py
 
-Student: <name, matric no>
+Student: Fatin Syakirah Binti Muhamad Hardon A24CS0073
 
 ## Setup
     python -m venv .venv
@@ -18,4 +18,4 @@ Student: <name, matric no>
 - `AI_USE_LOG.md` : my AI prompt log (or nil return)
 
 ## Design decisions
-<Two or three sentences: why proportions() raises ValueError when the total is zero, and which line of your code makes sure the input list is not changed.>
+proportions() raises ValueError when the total is zero because dividing by zero is not valid. The input list is not changed because the function returns a new list using a list comprehension instead of modifying the original list. The same approach is used in cpm().

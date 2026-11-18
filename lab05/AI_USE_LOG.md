@@ -18,13 +18,23 @@
 
 ## Entry 1
 
-- Date: <Date and time of the interaction>
-- Tool: <Tool name, version, access date and URL (UTM citation format)>
-- Purpose: <One of: explain, hint, review, debug, generate-code, generate-text, tests-plan, other>
-- Prompt: <The exact prompt you typed (paste it)>
-- Output: <What the AI gave back, in 1 to 3 lines (attach the full text if you used it)>
-- Verified by: <How you checked it: ran pytest, read the docs, compared with data, asked lecturer>
-- My change: <What you accepted, rejected or rewrote, and why>
-- Used in: <File and function, or report section, where it ended up (or 'not used')>
 
-<!-- Copy the whole 'Entry' block for each extra interaction: ## Entry 2, ## Entry 3 ... -->
+- Date: 16 November 2026, approximately 7:00 PM
+- Tool: Microsoft Copilot, accessed 16 November 2026, https://copilot.microsoft.com
+- Purpose: explain
+- Prompt: Check my proportions code" and "Check my cpm implementation"
+- Output: Reviewed the logic of proportions() and cpm(), including error handling, use of new lists, and avoiding side effects.
+- Verified by: Ran python -m pytest and checked that the functions behaved as expected.
+- My change: Refined the implementation and confirmed that the input data remained unchanged after function calls.
+- Used in: src/normalize.py
+
+## Entry 2
+
+- Date: 16 November 2026, approximately 9:15 PM
+- Tool: Microsoft Copilot, accessed 18 November 2026, https://copilot.microsoft.com
+- Purpose: review
+- Prompt: Review this against T4 requirements
+- Output: Reviewed the code against the T4 requirements, including module docstrings, function docstrings, type hints, absence of mutable default arguments, side\-effect\-free functions, and the use of if \_\_name\_\_ == "\_\_main\_\_": for demonstration code.
+- Verified by: Ran python \-m pytest and ruff check src.
+- My change: Confirmed that the implementation satisfied the T4 requirements and made minor adjustments where necessary.
+- Used in: src/sequence\_utils.py and src/normalize.py
